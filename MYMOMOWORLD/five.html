@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>오목 게임</title>
+    <meta charset="UTF-8">
+    <style>
+        .board {
+            display: grid;
+            grid-template-columns: repeat(15, 40px);
+            grid-template-rows: repeat(15, 40px);
+            gap: 2px;
+            width: 600px;
+            margin: 0 auto;
+        }
+
+        .cell {
+            width: 40px;
+            height: 40px;
+            border: 1px solid #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            cursor: pointer;
+        }
+    </style>
+
+    <script>
+        function goTohome() {
+            window.location.href = "MOMO_MAIN.HTML";
+        }
+
+    </script>
+</head>
+<body>
+    <h1>오목 게임</h1>
+    <button onclick="goTohome()">홈으로</button>
+    <div class="board" id="board"></div>
+    <script>
+        const boardElement = document.getElementById("board");
+        const boardSize = 15;
+        const cells = [];
+        let currentPlayer = "X";
+
+        // 게임 보드 초기화
+        for (let i = 0; i < boardSize; i++) {
+            for (let j = 0; j < boardSize; j++) {
+                const cell = document.createElement("div");
+                cell.classList.add("cell");
+                cell.dataset.row = i;
+                cell.dataset.col = j;
+                cell.addEventListener("click", handleCellClick);
+                boardElement.appendChild(cell);
+                cells.push(cell);
+            }
+        }
+
+        // 셀 클릭 이벤트 처리
+        function handleCellClick(event) {
+            const cell = event.target;
+            if (cell.textContent === "") {
+                cell.textContent = currentPlayer;
+                if (checkWin()) {
+                    alert(currentPlayer + " 플레이어가 이겼습니다!");
+                    resetBoard();
+                } else {
+                    currentPlayer = currentPlayer === "X" ? "O" : "X";
+                }
+            }
+        }
+
+        // 승리 여부 확인
+        function checkWin() {
+            // 승리 조건을 확인하는 로직을 추가하세요.
+            return false;
+        }
+
+        // 게임 보드 초기화
+        function resetBoard() {
+            cells.forEach(cell => {
+                cell.textContent = "";
+            });
+            currentPlayer = "X";
+        }
+    </script>
+
+    
+
+</body>
+</html>
+
+
