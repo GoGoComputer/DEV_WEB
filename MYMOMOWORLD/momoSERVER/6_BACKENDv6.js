@@ -1,5 +1,4 @@
-// backend v2 버전입니다. chat GPT 로 코드를 수정했습니다.
-
+// backend v6 버전입니다. 
 
 const express = require('express'); 
 const cors = require('cors');
